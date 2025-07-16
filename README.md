@@ -1,6 +1,6 @@
-# Proje-Front-end-Back-end
+# NetMate
 
-Sosyal Medya Projesi İçin Oluşturulmuş Github Reposu
+Sosyal Medya Projesi 
 
 ---
 
@@ -13,15 +13,27 @@ Sosyal Medya Projesi İçin Oluşturulmuş Github Reposu
 
 ## İçerik
 
-1- Proje İçin Kullanılabilecek Teknolojiler
+1- Proje İçin Yapılan Geliştirmeler
 
 2- Proje İçin Plan Aşamaları
 
-3- Proje İçin Görev Dağılımları
-
-4- Proje İçin Yapılabilecek Geliştirmeler
+3- Proje İçin Tanıtım Aşaması
 
 ---
-### 1-Proje İçin Kullanılabilecek Teknolojiler
+### 1-Proje İçin Yapılan Geliştirmeler
 - [x] Öncelikle sayfaların genel yapısının ortaya çıkması için elle wireframe taslakları oluşturuldu.
 - [] Sayfa ve proje genelinde isim ve logo için karar verilme aşamasına gelindi.
+
+  
+---
+### 2-Proje İçin Plan Aşamaları
+- Kullanıcı kayıt/giriş (JWT, cookie veya token ile)
+- Profil sayfası + profil resmi
+- Gönderi paylaşımı (metin + görsel)
+- Beğeni ve yorum
+- Takip etme / bırakma
+- Keşfet / anasayfa
+- Bildirimler (isteğe bağlı)
+- Gerçek zamanlı mesajlaşma (opsiyonel)
+- Mobil uyumlu responsive tasarım
+- Admin paneli (isteğe bağlı)
