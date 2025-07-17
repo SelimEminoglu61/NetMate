@@ -1,0 +1,16 @@
+@use "./styles/login";
+
+html,
+body,
+#root {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+.container {
+    width: 70%;
+    justify-self: center;
+    height: 100%;
+}
