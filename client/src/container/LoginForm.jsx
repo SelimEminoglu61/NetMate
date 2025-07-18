@@ -1,5 +1,7 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import YupPassword from "yup-password";
+YupPassword(Yup);
 
 const LoginForm = () => {
   const formik = useFormik({
@@ -9,6 +11,7 @@ const LoginForm = () => {
     },
     LoginSchema: Yup.object({
       email: Yup.string().email("Invalid email address").required("Required"),
+      password: Yup.string().password("Invalid password").required("Required"),
     }),
     onSubmit: async (values) => {
       alert(JSON.stringify(values));
