@@ -23,7 +23,7 @@ const isMatch = await bcrypt.compare("selim123", hashedPassword);
 */
 app.use(
   cors({
-    origin: "http://localhost:5173/",
+    origin: "http://localhost:5173",
     credentials: true,
   })
 );
@@ -38,15 +38,26 @@ mongoose
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
-const userSchema = new mongoose.Schema({
+const loginSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
 });
 
-module.exports = mongoose.model("User", userSchema);
+const registerSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  surname: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+});
+
+module.exports = mongoose.model("LoginControl", loginSchema);
+module.exports = mongoose.model("RegisterUser", registerSchema);
+
+app.post("/getRegister", (req, res) => {
+  const newUser = req.body;
+});
 
 app.get("/", (req, res) => {
-  console.log("burada");
   res.send("Backend çalışıyor!");
 });
 

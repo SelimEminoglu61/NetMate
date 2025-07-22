@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import YupPassword from "yup-password";
 YupPassword(Yup);
 import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const registerSchema = Yup.object({
   name: Yup.string().required(),
@@ -19,7 +20,7 @@ const registerSchema = Yup.object({
     .minSymbols(1, "At least one special character"),
   confirmPassword: Yup.string()
     .required()
-    .oneOf([Yup.ref["password"]], "Passwords is not match"),
+    .oneOf([Yup.ref("password")], "Passwords is not match"),
 });
 
 function RegisterForm() {
@@ -35,28 +36,30 @@ function RegisterForm() {
     },
     validationSchema: registerSchema,
     onSubmit: async (values) => {
-      fetch("http://localhost:5000/getRegister", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify({
-          name: "selim",
-          surname: "eminoglu",
-          email: "exp@gmail.com",
-          password: "E?35566757",
-        }),
-      })
-        .then(
-          () =>
-            toast.success("Success your register, navigate to login page", {
-              position: "top-right",
-            }),
-          navigate("/login")
-        )
-        .catch(err);
-      {
+      console.log("submit oldu");
+      try {
+        const response = await fetch("http://localhost:5000/getRegister", {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: values.name,
+            surname: values.surname,
+            email: values.email,
+            password: values.password,
+          }),
+        });
+        console.log("deneme");
+
+        if (!response.ok) {
+          throw new Error("Failed to response");
+        }
+
+        toast.success("Success! Navigating...", { position: "top-right" });
+        setTimeout(() => navigate("/login"), 2000);
+      } catch (err) {
         toast.error("Failed register: " + err, {
           position: "top-right",
         });
@@ -118,7 +121,6 @@ function RegisterForm() {
         type="password"
         id="confirmPassword"
         name="confirmPassword"
-        autoComplete="on"
         placeholder="*********"
         {...formik.getFieldProps("confirmPassword")}
       />
