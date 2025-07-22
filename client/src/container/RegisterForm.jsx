@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import YupPassword from "yup-password";
 YupPassword(Yup);
+import { toast } from "react-toastify";
 
 const registerSchema = Yup.object({
   name: Yup.string().required(),
@@ -34,8 +35,32 @@ function RegisterForm() {
     },
     validationSchema: registerSchema,
     onSubmit: async (values) => {
-      console.log("kayıt başarılı", values);
-      navigate("/login");
+      fetch("http://localhost:5000/getRegister", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          name: "selim",
+          surname: "eminoglu",
+          email: "exp@gmail.com",
+          password: "E?35566757",
+        }),
+      })
+        .then(
+          () =>
+            toast.success("Success your register, navigate to login page", {
+              position: "top-right",
+            }),
+          navigate("/login")
+        )
+        .catch(err);
+      {
+        toast.error("Failed register: " + err, {
+          position: "top-right",
+        });
+      }
     },
   });
   return (
