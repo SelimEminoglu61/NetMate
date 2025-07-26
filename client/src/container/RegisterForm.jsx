@@ -36,9 +36,8 @@ function RegisterForm() {
     },
     validationSchema: registerSchema,
     onSubmit: async (values) => {
-      console.log("submit oldu");
       try {
-        const response = await fetch("http://localhost:5000/getRegister", {
+        const response = await fetch("http://localhost:5000/register", {
           method: "POST",
           credentials: "include",
           headers: {
@@ -51,13 +50,14 @@ function RegisterForm() {
             password: values.password,
           }),
         });
-        console.log("deneme");
 
         if (!response.ok) {
           throw new Error("Failed to response");
         }
 
-        toast.success("Success! Navigating...", { position: "top-right" });
+        toast.success("Success! Navigating to Login", {
+          position: "top-right",
+        });
         setTimeout(() => navigate("/login"), 2000);
       } catch (err) {
         toast.error("Failed register: " + err, {
