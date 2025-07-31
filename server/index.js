@@ -1,13 +1,12 @@
 const express = require("express");
 require("dotenv").config();
-const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
 
-const saltRounds = 10;
 const app = express();
 const PORT = process.env.PORT || 5000;
 const registerRoute = require("./routes/getRegister");
+const loginRoute = require("./routes/getLogin");
 /*
 try {
   const decoded = jwt.verify(token, secretKey);
@@ -26,7 +25,8 @@ app.use(
 );
 app.use(express.json());
 
-app.use("/register", registerRoute);
+app.use("/api/register", registerRoute);
+app.use("/api/login", loginRoute);
 
 app.listen(PORT, () => {
   console.log(`Sunucu çalışıyor: http://localhost:${PORT}`);

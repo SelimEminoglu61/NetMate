@@ -37,19 +37,22 @@ function RegisterForm() {
     validationSchema: registerSchema,
     onSubmit: async (values) => {
       try {
-        const response = await fetch("http://localhost:5000/register", {
-          method: "POST",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name: values.name,
-            surname: values.surname,
-            email: values.email,
-            password: values.password,
-          }),
-        });
+        const response = await fetch(
+          "http://localhost:5000/api/register/getRegister",
+          {
+            method: "POST",
+            credentials: "include",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name: values.name,
+              surname: values.surname,
+              email: values.email,
+              password: values.password,
+            }),
+          }
+        );
 
         if (!response.ok) {
           throw new Error("Failed to response");

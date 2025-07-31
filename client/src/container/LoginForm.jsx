@@ -3,6 +3,8 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import YupPassword from "yup-password";
 YupPassword(Yup);
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const loginSchema = Yup.object({
   email: Yup.string().email("Invalid email address").required("Required"),
@@ -26,8 +28,39 @@ const LoginForm = () => {
     },
     validationSchema: loginSchema,
     onSubmit: async (values) => {
-      console.log("giriş başarılı", values);
-      navigate("/Home");
+      try {
+        const response = await fetch(
+          "http://localhost:5000/api/login/getLogin",
+          {
+            method: "POST",
+            credentials: "include",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: values.email,
+              password: values.password,
+            }),
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to response");
+        }
+
+        if (response.status == 404) {
+          throw new Error("Not find account");
+        }
+
+        toast.success("Success! Welcome To NetMate", {
+          position: "top-right",
+        });
+        setTimeout(() => navigate("/home"), 2000);
+      } catch (err) {
+        toast.error("Failed register: " + err, {
+          position: "top-right",
+        });
+      }
     },
   });
   return (
