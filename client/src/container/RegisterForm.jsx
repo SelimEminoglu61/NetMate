@@ -55,7 +55,7 @@ function RegisterForm() {
         );
 
         if (!response.ok) {
-          throw new Error("Failed to response");
+          throw new Error("Failed to register");
         }
 
         toast.success("Success! Navigating to Login", {

@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router";
+import { data, useNavigate } from "react-router";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import YupPassword from "yup-password";
@@ -43,21 +43,18 @@ const LoginForm = () => {
             }),
           }
         );
-
-        if (!response.ok) {
-          throw new Error("Failed to response");
+        const data = await response.json();
+        if (response.ok) {
+          toast.success("Success! Welcome To NetMate", {
+            position: "top-right",
+          });
+          setTimeout(() => navigate("/home"), 2000);
+        } else {
+          console.log("burada");
+          toast.error(data.message, { position: "top-right" });
         }
-
-        if (response.status == 404) {
-          throw new Error("Not find account");
-        }
-
-        toast.success("Success! Welcome To NetMate", {
-          position: "top-right",
-        });
-        setTimeout(() => navigate("/home"), 2000);
       } catch (err) {
-        toast.error("Failed register: " + err, {
+        toast.error(err, {
           position: "top-right",
         });
       }

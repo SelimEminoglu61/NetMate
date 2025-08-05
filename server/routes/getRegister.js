@@ -4,9 +4,6 @@ const connectDb = require("../db.js");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
-/*const hashedPassword = await bcrypt.hash(password, saltRounds);
-const isMatch = await bcrypt.compare("selim123", hashedPassword);
-*/
 router.post("/getRegister", async (req, res) => {
   try {
     const db = await connectDb();
