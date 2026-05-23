@@ -41,16 +41,16 @@ const LoginForm = () => {
               email: values.email,
               password: values.password,
             }),
-          }
+          },
         );
         const data = await response.json();
         if (response.ok) {
           toast.success("Success! Welcome To NetMate", {
             position: "top-right",
           });
+          console.log(response.token);
           setTimeout(() => navigate("/home"), 2000);
         } else {
-          console.log("burada");
           toast.error(data.message, { position: "top-right" });
         }
       } catch (err) {

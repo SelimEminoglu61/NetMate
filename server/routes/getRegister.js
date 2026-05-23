@@ -7,7 +7,7 @@ const saltRounds = 10;
 router.post("/getRegister", async (req, res) => {
   try {
     const db = await connectDb();
-    const newUsers = db.collection("RegisterUsers");
+    const newUsers = db.collection("Users");
     const { name, surname, email } = req.body;
 
     const hashedPassword = await bcrypt.hash(req.body.password, saltRounds);

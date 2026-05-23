@@ -11,6 +11,11 @@
 
 .loginDiv {
     @include giveFlex;
+    font-family: "Times New Roman", Times, serif;
+    font-weight: 700;
+    font-size: 14pt;
+    background-color: #e7e6e1;
+    color: #2c4b66;
     flex-direction: column;
     width: 300px;
     height: 400px;
@@ -51,5 +56,15 @@ form {
 }
 
 .toRegister {
-    margin-top: 2em;
+    @include giveFlex;
+    flex-direction: column;
+    margin-top: 1rem;
+    a {
+        color: #2c4b66;
+        text-decoration: none;
+        font-weight: 700;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
 }

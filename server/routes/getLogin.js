@@ -8,21 +8,21 @@ const jwt = require("jsonwebtoken");
 router.post("/getLogin", async (req, res) => {
   try {
     const db = await connectDb();
-    const newUsers = db.collection("RegisterUsers");
+    const newUsers = db.collection("Users");
     const { email } = req.body;
     const account = await newUsers.findOne({ email });
 
     if (account != null) {
       const isMatch = await bcrypt.compare(
         req.body.password,
-        account.hashedPassword
+        account.hashedPassword,
       );
 
       if (isMatch == true) {
         const token = jwt.sign(
           { userId: account._id },
           process.env.JWT_SECRET_KEY,
-          { expiresIn: "2h" }
+          { expiresIn: "2h" },
         );
 
         res.status(200).json({

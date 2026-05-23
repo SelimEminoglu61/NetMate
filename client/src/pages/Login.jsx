@@ -5,12 +5,17 @@ function Login() {
     <div className="container">
       <div className="heightDiv">
         <div className="loginDiv">
-          <h1>NetMate</h1>
-          <p>Log In</p>
+          <div>
+            <img src="./images/logo.png" alt="NetMate Logo" width={150} />
+            <p>Log In</p>
+          </div>
+
           <LoginForm />
-          <h4 className="toRegister">
-            Have not you your account?<a href="/register">Sign Up</a>now
-          </h4>
+          <div className="toRegister">
+            <p>Have not you your account?</p>
+
+            <a href="/register">Sign Up</a>
+          </div>
         </div>
       </div>
     </div>
