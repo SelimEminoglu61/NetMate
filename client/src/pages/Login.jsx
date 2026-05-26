@@ -5,9 +5,15 @@ function Login() {
     <div className="container">
       <div className="heightDiv">
         <div className="loginDiv">
-          <div>
-            <img src="./images/logo.png" alt="NetMate Logo" width={150} />
-            <p>Log In</p>
+          <div className="loginTopContent">
+            <div className="logoWrapper">
+              <img
+                src="./images/logo.png"
+                className="logo animateStart"
+                alt="NetMate Logo"
+              />
+            </div>
+            <p className="loginTitle">Log In</p>
           </div>
 
           <LoginForm />

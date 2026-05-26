@@ -1,12 +1,17 @@
 @use "./styles/login";
 @use "./styles/register";
+@use "./styles/logoIntro";
 
 html,
-body,
 #root {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #ff7a18, #ff3c3c, #2c3e50);
+    min-height: 100vh;
 }
 
 .container {
