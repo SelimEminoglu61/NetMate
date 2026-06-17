@@ -9,30 +9,45 @@ function Feed() {
       user: "John Doe",
       content: "This is a sample post.",
       img: "avatar.png",
+      likeNumber: 0,
+      liked: false,
+      showComments: false,
     },
     {
       id: 2,
       user: "Haren Doke",
       content: "This is a sample post.",
       img: "avatar.png",
+      likeNumber: 0,
+      liked: false,
+      showComments: false,
     },
     {
       id: 3,
       user: "Jane Smith",
       content: "This is another sample post.",
       img: "avatar.png",
+      likeNumber: 0,
+      liked: false,
+      showComments: false,
     },
     {
       id: 4,
       user: "Johan Kepos",
       content: "This is a sample post.",
       img: "avatar.png",
+      likeNumber: 0,
+      liked: false,
+      showComments: false,
     },
     {
       id: 5,
       user: "Daizy Frank",
       content: "This is a sample post.",
       img: "avatar.png",
+      likeNumber: 0,
+      liked: false,
+      showComments: false,
     },
   ]);
 
@@ -43,7 +58,7 @@ function Feed() {
   return (
     <div className="feedHome">
       <PostCreate addPost={addPost} />
-      <Posts posts={posts} />
+      <Posts posts={posts} setPosts={setPosts} />
     </div>
   );
 }
