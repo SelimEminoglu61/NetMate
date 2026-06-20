@@ -2,6 +2,7 @@ import { Navigate, Route, Routes } from "react-router";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Home from "../pages/Home";
+import Profile from "../pages/Profile";
 
 function Router() {
   return (
@@ -10,6 +11,7 @@ function Router() {
       <Route path="/login" element={<Home />} />
       <Route path="/register" element={<Register />} />
       <Route path="/home" element={<Home />} />
+      <Route path="/profile" element={<Profile />} />
     </Routes>
   );
 }
