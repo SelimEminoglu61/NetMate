@@ -1,25 +1,11 @@
 import Feed from "../components/Feed";
 import Suggestions from "../components/Suggestions";
+import Header from "../components/Header";
 
 function Home() {
   return (
     <div className="container">
-      <div className="headerHome">
-        <div className="headerHomeLeft">
-          <button className="hamburgerButton">
-            <img src="/icons/hamburger.png" alt="Hamburger Menu" width={30} />
-          </button>
-        </div>
-        <img src="/images/logo.png" alt="Logo" width={150} />
-        <div className="headerHomeRight">
-          <button
-            className="profileButton"
-            onClick={() => (window.location.href = "/profile")}
-          >
-            <img src="/images/user.png" alt="Profile" width={50} />
-          </button>
-        </div>
-      </div>
+      <Header />
       <div className="mainHome">
         <div className="sidebarHome">
           <Suggestions />

@@ -1,0 +1,99 @@
+.sideLineProfile {
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    border-right: 3px solid #007bff;
+    border-left: 3px solid #007bff;
+}
+
+.profilePageGrid {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr) 280px;
+    gap: 24px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.leftSidebarProfile {
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    padding: 10px;
+    margin: 10px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+
+        li {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 10px;
+            cursor: pointer;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 12px;
+            margin-bottom: 3px;
+            font-weight: bold;
+            font-size: 14px;
+            font-family: "Poppins", sans-serif;
+            font-weight: 500;
+            color: rgba(0, 0, 0, 0.6);
+            p {
+                margin: 0;
+            }
+            img {
+                margin-left: 20px;
+                margin-right: 8px;
+            }
+            &:hover {
+                background: rgba(13, 71, 161, 0.6);
+                color: rgba(227, 242, 253, 1);
+            }
+        }
+    }
+}
+
+.profileContent {
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    margin: 10px;
+    border-radius: 12px;
+    .profileHeader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-right: 40px;
+        }
+        .profileInfo {
+            h2 {
+                margin: 0;
+                font-size: 24px;
+                font-weight: bold;
+            }
+            p {
+                margin: 0;
+                font-size: 16px;
+                color: rgba(0, 0, 0, 0.6);
+            }
+        }
+    }
+    .banner {
+        margin: 0px;
+        border: 3px solid #007bff;
+        width: 100%;
+        height: 100px;
+    }
+}
