@@ -24,6 +24,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    height: fit-content;
     ul {
         list-style: none;
         padding: 0;
@@ -66,21 +67,38 @@
     padding: 20px;
     margin: 10px;
     border-radius: 12px;
+    .profileBanner {
+        width: 100%;
+        height: 200px;
+        background: rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .banner {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    }
     .profileHeader {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         margin-top: 20px;
         img {
-            width: 80px;
-            height: 80px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             margin-right: 40px;
         }
         .profileInfo {
             h2 {
                 margin: 0;
-                font-size: 24px;
+                font-size: 40px;
                 font-weight: bold;
             }
             p {
@@ -89,11 +107,144 @@
                 color: rgba(0, 0, 0, 0.6);
             }
         }
+        .profileHeaderOne {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .profileHeaderTwo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+            button {
+                margin: 0 10px;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                background-color: #007bff;
+                color: white;
+                font-size: 16px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+
+                &:hover {
+                    background-color: #0056b3;
+                }
+            }
+            p {
+                margin: 0 10px;
+                font-size: 16px;
+                color: rgba(0, 0, 0, 0.6);
+            }
+        }
     }
-    .banner {
-        margin: 0px;
-        border: 3px solid #007bff;
+
+    .profilePosts {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        .postSelection {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            .active {
+                background-color: #0056b3;
+                color: white;
+            }
+            button {
+                width: 100%;
+                padding: 10px 20px;
+                border-top: 3px solid #007bff;
+                border-bottom: 3px solid #007bff;
+                border-left: none;
+                border-right: none;
+
+                background-color: transparent;
+                color: black;
+                font-size: 16px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+
+                &:hover {
+                    background-color: #0056b3;
+                    color: white;
+                }
+            }
+        }
+        .postsContainer {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }
+    }
+}
+
+.rightSidebarProfile {
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    padding: 10px;
+    margin: 10px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    .suggestions {
         width: 100%;
-        height: 100px;
+        h3 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            li {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                padding: 5px;
+                cursor: pointer;
+                border: 2px solid rgba(255, 255, 255, 0.6);
+                background: rgba(255, 255, 255, 0.4);
+                border-radius: 12px;
+                margin-bottom: 3px;
+                font-weight: bold;
+                font-size: 14px;
+                font-family: "Poppins", sans-serif;
+                font-weight: 500;
+                color: rgba(0, 0, 0, 0.6);
+                p {
+                    margin: 0;
+                }
+                img {
+                    margin-left: 10px;
+                    margin-right: 8px;
+                    width: 40px; /* Adjust the size as needed */
+                    height: 40px; /* Adjust the size as needed */
+                    border-radius: 50%; /* Make it circular */
+                }
+            }
+        }
+    }
+    .AINetmate {
+        width: 100%;
+        margin-top: 20px;
+        h3 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        p {
+            margin: 0;
+        }
     }
 }

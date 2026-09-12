@@ -1,8 +1,4 @@
-import { useState } from "react";
-
 function Posts({ posts, setPosts }) {
-  const [likedPost, setLikedPost] = useState(false);
-
   const handleLikeClick = (postId) => {
     setPosts((prevPosts) =>
       prevPosts.map((post) => {
