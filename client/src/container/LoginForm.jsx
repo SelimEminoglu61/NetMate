@@ -1,4 +1,4 @@
-import { data, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import YupPassword from "yup-password";

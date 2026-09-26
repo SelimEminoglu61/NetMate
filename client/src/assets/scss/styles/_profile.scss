@@ -1,7 +1,25 @@
+@mixin profilePostGrid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    p {
+        margin: 0;
+        padding: 10px;
+        border: 2px solid rgba(255, 255, 255, 0.6);
+        background: rgba(255, 255, 255, 0.4);
+        border-radius: 12px;
+        margin-bottom: 3px;
+        font-weight: bold;
+        font-size: 14px;
+        font-family: "Poppins", sans-serif;
+        font-weight: 500;
+        color: rgba(0, 0, 0, 0.6);
+    }
+}
+
 .sideLineProfile {
-    position: fixed;
-    top: 0;
-    height: 100vh;
+    min-height: 100vh;
     border-right: 3px solid #007bff;
     border-left: 3px solid #007bff;
 }
@@ -114,9 +132,22 @@
         }
         .profileHeaderTwo {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             margin-top: 10px;
+            .profileStats {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+                margin-top: 10px;
+                p {
+                    margin: 0;
+                    font-size: 16px;
+                    color: rgba(0, 0, 0, 0.6);
+                }
+            }
             button {
                 margin: 0 10px;
                 padding: 10px 20px;
@@ -136,6 +167,38 @@
                 margin: 0 10px;
                 font-size: 16px;
                 color: rgba(0, 0, 0, 0.6);
+            }
+            .editProfileModal {
+                display: flex;
+
+                justify-content: center;
+                align-items: center;
+                margin-top: 20px;
+                .editProfileContent {
+                    display: flex;
+
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px;
+                    padding: 20px;
+                    background-color: rgba(255, 255, 255, 0.3);
+                    backdrop-filter: blur(10px);
+                    border-radius: 12px;
+                }
+                button {
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 5px;
+                    background-color: #007bff;
+                    color: white;
+                    font-size: 16px;
+                    cursor: pointer;
+                    transition: background-color 0.3s ease;
+
+                    &:hover {
+                        background-color: #0056b3;
+                    }
+                }
             }
         }
     }
@@ -179,6 +242,15 @@
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
+            .posts {
+                @include profilePostGrid;
+            }
+            .medias {
+                @include profilePostGrid;
+            }
+            .likes {
+                @include profilePostGrid;
+            }
         }
     }
 }
@@ -193,6 +265,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    height: fit-content;
     .suggestions {
         width: 100%;
         h3 {
