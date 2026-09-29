@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import Header from "../components/Header";
 
@@ -16,6 +17,11 @@ function Profile() {
   });
 
   const [editForm, setEditForm] = useState(profileData);
+  const [suggestionsPersons, setSuggestionsPersons] = useState([
+    { id: 1, name: "Alice", username: "@alice", isFollowing: false },
+    { id: 2, name: "Bob", username: "@bob", isFollowing: false },
+    { id: 3, name: "Charlie", username: "@charlie", isFollowing: false },
+  ]);
 
   const handleOpenEditProfile = () => {
     setEditForm(profileData);
@@ -34,6 +40,22 @@ function Profile() {
       ...editForm,
       [name]: value,
     });
+  };
+
+  const handleFollowToggle = (person) => {
+    const selectedPerson = suggestionsPersons.find((p) => p.id === person.id);
+    if (!selectedPerson) return;
+
+    const countChange = selectedPerson.isFollowing ? -1 : 1;
+    setProfileData((prevData) => ({
+      ...prevData,
+      following: prevData.following + countChange,
+    }));
+
+    const updatedPersons = suggestionsPersons.map((p) =>
+      p.id === person.id ? { ...p, isFollowing: !p.isFollowing } : p,
+    );
+    setSuggestionsPersons(updatedPersons);
   };
 
   const postExamples = [
@@ -62,50 +84,60 @@ function Profile() {
         <aside className="leftSidebarProfile">
           <ul>
             <li>
-              <img
-                src="/icons/home.png"
-                alt="home icon"
-                width="24"
-                height="24"
-              />
+              <NavLink to="/home" className="sidebarLink">
+                <img
+                  src="/icons/home.png"
+                  alt="home icon"
+                  width="24"
+                  height="24"
+                />
 
-              <p>Home</p>
+                <p>Home</p>
+              </NavLink>
             </li>
             <li>
-              <img
-                src="/icons/search.png"
-                alt="explore icon"
-                width="24"
-                height="24"
-              />
-              <p>Explore</p>
+              <NavLink to="/explore" className="sidebarLink">
+                <img
+                  src="/icons/search.png"
+                  alt="explore icon"
+                  width="24"
+                  height="24"
+                />
+                <p>Explore</p>
+              </NavLink>
             </li>
             <li>
-              <img
-                src="/icons/messenger.png"
-                alt="messages icon"
-                width="24"
-                height="24"
-              />
-              <p>Messages</p>
+              <NavLink to="/notifications" className="sidebarLink">
+                <img
+                  src="/icons/messenger.png"
+                  alt="messages icon"
+                  width="24"
+                  height="24"
+                />
+                <p>Messages</p>
+              </NavLink>
             </li>
             <li>
-              <img
-                src="/icons/user.png"
-                alt="profile icon"
-                width="24"
-                height="24"
-              />
-              <p>Profile</p>
+              <NavLink to="/profile" className="sidebarLink">
+                <img
+                  src="/icons/user.png"
+                  alt="profile icon"
+                  width="24"
+                  height="24"
+                />
+                <p>Profile</p>
+              </NavLink>
             </li>
             <li>
-              <img
-                src="/icons/settings.png"
-                alt="settings icon"
-                width="24"
-                height="24"
-              />
-              <p>Settings</p>
+              <NavLink to="/settings" className="sidebarLink">
+                <img
+                  src="/icons/settings.png"
+                  alt="settings icon"
+                  width="24"
+                  height="24"
+                />
+                <p>Settings</p>
+              </NavLink>
             </li>
           </ul>
         </aside>
@@ -135,43 +167,6 @@ function Profile() {
                     Edit Profile
                   </button>
                 </div>
-
-                {isOpenEditProfile && (
-                  <div className="editProfileModal">
-                    <div className="editProfileContent">
-                      <h2>Edit Profile</h2>
-                      <button onClick={() => setIsOpenEditProfile(false)}>
-                        Cancel
-                      </button>
-                      <form onSubmit={handleEditProfile}>
-                        <label htmlFor="name">Name:</label>
-                        <input
-                          type="text"
-                          id="name"
-                          name="name"
-                          value={editForm.name}
-                          onChange={handleEditChange}
-                        />
-                        <label htmlFor="username">Username:</label>
-                        <input
-                          type="text"
-                          id="username"
-                          name="username"
-                          value={editForm.username}
-                          onChange={handleEditChange}
-                        />
-                        <label htmlFor="bio">Bio:</label>
-                        <textarea
-                          id="bio"
-                          name="bio"
-                          value={editForm.bio}
-                          onChange={handleEditChange}
-                        ></textarea>
-                        <button type="submit">Save Changes</button>
-                      </form>
-                    </div>
-                  </div>
-                )}
               </div>
             </div>
             <div className="profilePosts">
@@ -235,18 +230,20 @@ function Profile() {
           <div className="suggestions">
             <h3>Suggestions</h3>
             <ul>
-              <li>
-                <img src="/images/user.png" alt="User 1" />
-                <p>User 1</p>
-              </li>
-              <li>
-                <img src="/images/user.png" alt="User 2" />
-                <p>User 2</p>
-              </li>
-              <li>
-                <img src="/images/user.png" alt="User 3" />
-                <p>User 3</p>
-              </li>
+              {suggestionsPersons.map((person) => (
+                <li key={person.id}>
+                  <img src="/images/user.png" alt="User Profile" />
+                  <p>{person.name}</p>
+                  <button
+                    className={
+                      person.isFollowing ? "followingButton" : "followButton"
+                    }
+                    onClick={() => handleFollowToggle(person)}
+                  >
+                    {person.isFollowing ? "Unfollow" : "Follow"}
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
           <div className="AINetmate">
@@ -255,6 +252,46 @@ function Profile() {
           </div>
         </aside>
       </div>
+      {isOpenEditProfile && (
+        <div
+          className="editProfileModal"
+          onClick={() => setIsOpenEditProfile(false)}
+        >
+          <div
+            className="editProfileContent"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h2>Edit Profile</h2>
+            <button onClick={() => setIsOpenEditProfile(false)}>Cancel</button>
+            <form onSubmit={handleEditProfile}>
+              <label htmlFor="name">Name:</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={editForm.name}
+                onChange={handleEditChange}
+              />
+              <label htmlFor="username">Username:</label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                value={editForm.username}
+                onChange={handleEditChange}
+              />
+              <label htmlFor="bio">Bio:</label>
+              <textarea
+                id="bio"
+                name="bio"
+                value={editForm.bio}
+                onChange={handleEditChange}
+              ></textarea>
+              <button type="submit">Save Changes</button>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

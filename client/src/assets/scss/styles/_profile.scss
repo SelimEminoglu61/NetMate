@@ -32,6 +32,42 @@
     margin: 0 auto;
 }
 
+.editProfileModal {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .editProfileContent {
+        width: min(100%, 480px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+    }
+    button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: #0056b3;
+        }
+    }
+}
+
 .leftSidebarProfile {
     background: rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(10px);
@@ -50,30 +86,41 @@
         width: 100%;
 
         li {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            padding: 10px;
-            cursor: pointer;
-            border: 2px solid rgba(255, 255, 255, 0.6);
-            background: rgba(255, 255, 255, 0.4);
-            border-radius: 12px;
             margin-bottom: 3px;
-            font-weight: bold;
-            font-size: 14px;
-            font-family: "Poppins", sans-serif;
-            font-weight: 500;
-            color: rgba(0, 0, 0, 0.6);
-            p {
-                margin: 0;
-            }
-            img {
-                margin-left: 20px;
-                margin-right: 8px;
-            }
-            &:hover {
-                background: rgba(13, 71, 161, 0.6);
-                color: rgba(227, 242, 253, 1);
+            border-radius: 12px;
+            .sidebarLink {
+                width: 100%;
+                box-sizing: border-box;
+                font-weight: bold;
+                font-size: 14px;
+                font-family: "Poppins", sans-serif;
+                font-weight: 500;
+                color: rgba(0, 0, 0, 0.6);
+                padding: 10px;
+                cursor: pointer;
+                border: 2px solid rgba(255, 255, 255, 0.6);
+                background: rgba(255, 255, 255, 0.4);
+                border-radius: 12px;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                text-decoration: none;
+
+                p {
+                    margin: 0;
+                }
+                img {
+                    margin-left: 20px;
+                    margin-right: 8px;
+                }
+                &:hover {
+                    background: rgba(13, 71, 161, 0.6);
+                    color: rgba(227, 242, 253, 1);
+                }
+                &.active {
+                    background: rgba(13, 71, 161, 0.6);
+                    color: rgba(227, 242, 253, 1);
+                }
             }
         }
     }
@@ -167,38 +214,6 @@
                 margin: 0 10px;
                 font-size: 16px;
                 color: rgba(0, 0, 0, 0.6);
-            }
-            .editProfileModal {
-                display: flex;
-
-                justify-content: center;
-                align-items: center;
-                margin-top: 20px;
-                .editProfileContent {
-                    display: flex;
-
-                    justify-content: center;
-                    align-items: center;
-                    gap: 10px;
-                    padding: 20px;
-                    background-color: rgba(255, 255, 255, 0.3);
-                    backdrop-filter: blur(10px);
-                    border-radius: 12px;
-                }
-                button {
-                    padding: 10px 20px;
-                    border: none;
-                    border-radius: 5px;
-                    background-color: #007bff;
-                    color: white;
-                    font-size: 16px;
-                    cursor: pointer;
-                    transition: background-color 0.3s ease;
-
-                    &:hover {
-                        background-color: #0056b3;
-                    }
-                }
             }
         }
     }
@@ -303,6 +318,36 @@
                     width: 40px; /* Adjust the size as needed */
                     height: 40px; /* Adjust the size as needed */
                     border-radius: 50%; /* Make it circular */
+                }
+                .followButton {
+                    margin-left: auto; /* Push the button to the right */
+                    padding: 5px 10px;
+                    border: none;
+                    border-radius: 5px;
+                    background-color: #007bff;
+                    color: white;
+                    font-size: 14px;
+                    cursor: pointer;
+                    transition: background-color 0.3s ease;
+
+                    &:hover {
+                        background-color: #0056b3;
+                    }
+                }
+                .followingButton {
+                    margin-left: auto; /* Push the button to the right */
+                    padding: 5px 10px;
+                    border: none;
+                    border-radius: 5px;
+                    background-color: #a72828; /* Green color for following */
+                    color: white;
+                    font-size: 14px;
+                    cursor: pointer;
+                    transition: background-color 0.3s ease;
+
+                    &:hover {
+                        background-color: #a72828; /* Darker green on hover */
+                    }
                 }
             }
         }

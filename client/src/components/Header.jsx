@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 function Header() {
   return (
     <div className="headerHome">
@@ -8,12 +10,9 @@ function Header() {
       </div>
       <img src="/images/logo.png" alt="Logo" width={150} />
       <div className="headerHomeRight">
-        <button
-          className="profileButton"
-          onClick={() => (window.location.href = "/profile")}
-        >
+        <NavLink className="profileButton" to="/profile">
           <img src="/images/user.png" alt="Profile" width={50} />
-        </button>
+        </NavLink>
       </div>
     </div>
   );
