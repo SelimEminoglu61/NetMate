@@ -132,8 +132,19 @@
             }
         }
         .postCardComments {
+            display: flex;
+            gap: 10px;
+            align-items: center;
             margin-top: 12px;
             animation: fadeIn 0.2s ease;
+            button {
+                background: #3b82f6;
+                border: none;
+                padding: 8px;
+                border-radius: 10px;
+                color: white;
+                cursor: pointer;
+            }
             input {
                 width: 100%;
                 padding: 8px;
@@ -142,6 +153,21 @@
                 outline: none;
                 background: rgba(255, 255, 255, 0.1);
                 color: white;
+            }
+        }
+        .postCardCommentsList {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            .postCardComment {
+                margin-top: 10px;
+                width: 95%;
+                padding: 8px;
+                border-radius: 10px;
+                border: none;
+                outline: none;
+                background: rgba(255, 255, 255, 0.1);
+                color: black;
             }
         }
 

@@ -51,7 +51,7 @@ function RegisterForm() {
               email: values.email,
               password: values.password,
             }),
-          }
+          },
         );
 
         if (!response.ok) {
@@ -70,7 +70,7 @@ function RegisterForm() {
     },
   });
   return (
-    <form onSubmit={formik.handleSubmit} noValidate>
+    <form className="authForm" onSubmit={formik.handleSubmit} noValidate>
       <label htmlFor="name">Name</label>
       <input
         type="text"

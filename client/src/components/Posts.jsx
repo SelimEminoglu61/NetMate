@@ -1,4 +1,41 @@
+import { useState } from "react";
+
 function Posts({ posts, setPosts }) {
+  const [commentsDrafts, setCommentsDrafts] = useState({});
+
+  const handleCommentSubmit = (e, postId) => {
+    e.preventDefault();
+    const commentContent = commentsDrafts[postId]?.trim();
+
+    if (!commentContent) {
+      return;
+    }
+
+    setPosts((prevPosts) =>
+      prevPosts.map((post) => {
+        if (post.id === postId && commentContent) {
+          return {
+            ...post,
+            comments: [
+              ...post.comments,
+              {
+                id: Date.now(),
+                user: "Current User",
+                content: commentContent,
+              },
+            ],
+          };
+        }
+        return post;
+      }),
+    );
+
+    setCommentsDrafts((prevDrafts) => ({
+      ...prevDrafts,
+      [postId]: "",
+    }));
+  };
+
   const handleLikeClick = (postId) => {
     setPosts((prevPosts) =>
       prevPosts.map((post) => {
@@ -32,8 +69,8 @@ function Posts({ posts, setPosts }) {
 
   return (
     <div>
-      {posts.map((post, index) => (
-        <div className="postCard" key={index}>
+      {posts.map((post) => (
+        <div className="postCard" key={post.id}>
           <div className="postCardHeader">
             <div className="postCardUser">{post.user}</div>
             <div className="postCardDate">2 hours ago</div>
@@ -59,8 +96,34 @@ function Posts({ posts, setPosts }) {
             </button>
           </div>
           {post.showComments && (
-            <div className="postCardComments">
-              <input type="text" placeholder="Write a comment..." />
+            <form
+              onSubmit={(e) => handleCommentSubmit(e, post.id)}
+              className="postCardComments"
+            >
+              <input
+                type="text"
+                placeholder="Write a comment..."
+                value={commentsDrafts[post.id] || ""}
+                onChange={(e) =>
+                  setCommentsDrafts({
+                    ...commentsDrafts,
+                    [post.id]: e.target.value,
+                  })
+                }
+              />
+              <button type="submit">Send Comment</button>
+            </form>
+          )}
+          {post.showComments && (
+            <div className="postCardCommentsList">
+              {post.comments.map((comment) => (
+                <div className="postCardComment" key={comment.id}>
+                  <div className="postCardCommentUser">{comment.user}</div>
+                  <div className="postCardCommentContent">
+                    {comment.content}
+                  </div>
+                </div>
+              ))}
             </div>
           )}
         </div>

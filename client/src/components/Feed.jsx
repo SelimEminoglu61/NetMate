@@ -12,6 +12,7 @@ function Feed() {
       likeNumber: 0,
       liked: false,
       showComments: false,
+      comments: [],
     },
     {
       id: 2,
@@ -21,6 +22,7 @@ function Feed() {
       likeNumber: 0,
       liked: false,
       showComments: false,
+      comments: [],
     },
     {
       id: 3,
@@ -30,6 +32,7 @@ function Feed() {
       likeNumber: 0,
       liked: false,
       showComments: false,
+      comments: [],
     },
     {
       id: 4,
@@ -39,6 +42,7 @@ function Feed() {
       likeNumber: 0,
       liked: false,
       showComments: false,
+      comments: [],
     },
     {
       id: 5,
@@ -48,6 +52,7 @@ function Feed() {
       likeNumber: 0,
       liked: false,
       showComments: false,
+      comments: [],
     },
   ]);
 

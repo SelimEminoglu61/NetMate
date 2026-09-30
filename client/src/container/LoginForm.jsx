@@ -44,11 +44,14 @@ const LoginForm = () => {
           },
         );
         const data = await response.json();
+
         if (response.ok) {
+          sessionStorage.setItem("token", data.token);
+
           toast.success("Success! Welcome To NetMate", {
             position: "top-right",
           });
-          console.log(response.token);
+
           setTimeout(() => navigate("/home"), 2000);
         } else {
           toast.error(data.message, { position: "top-right" });
@@ -61,7 +64,7 @@ const LoginForm = () => {
     },
   });
   return (
-    <form onSubmit={formik.handleSubmit} noValidate>
+    <form className="authForm" onSubmit={formik.handleSubmit} noValidate>
       <label htmlFor="email">E-mail</label>
       <input
         type="email"

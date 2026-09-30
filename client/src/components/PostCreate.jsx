@@ -11,6 +11,10 @@ function PostCreate({ addPost }) {
         user: "Current User",
         content: content,
         img: "avatar.png",
+        likeNumber: 0,
+        liked: false,
+        showComments: false,
+        comments: [],
       });
       setContent("");
     }
