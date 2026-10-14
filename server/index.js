@@ -7,6 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const registerRoute = require("./routes/getRegister");
 const loginRoute = require("./routes/getLogin");
+const UserRoutes = require("./routes/userRoutes");
 
 /*
 try {
@@ -28,6 +29,7 @@ app.use(express.json());
 
 app.use("/api/register", registerRoute);
 app.use("/api/login", loginRoute);
+app.use("/api/users", UserRoutes);
 
 app.get("/api/test", authMiddleware, (req, res) => {
   res.json({
