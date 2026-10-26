@@ -1,8 +1,51 @@
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "../components/Header";
 
 function Profile() {
+  const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    getUserData();
+  }, []);
+
+  const getUserData = async () => {
+    const token = sessionStorage.getItem("token");
+
+    if (!token) {
+      setError(new Error("No token found"));
+      setIsLoading(false);
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:5000/api/users/me", {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("User data fetched:", data);
+
+        setUser(data);
+      } else {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to fetch user data");
+      }
+    } catch (error) {
+      setError(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const [activeTab, setActiveTab] = useState("posts");
   const [isOpenEditProfile, setIsOpenEditProfile] = useState(false);
   const [profileData, setProfileData] = useState({
@@ -148,8 +191,17 @@ function Profile() {
               <div className="profileHeaderOne">
                 <img src="/images/user.png" alt="User Profile" />
                 <div className="profileInfo">
-                  <h2>{profileData.name}</h2>
-                  <p>{profileData.username}</p>
+                  {isLoading ? (
+                    <p>Loading...</p>
+                  ) : error ? (
+                    <p>Error: {error.message}</p>
+                  ) : (
+                    <div>
+                      <h2>{user.name}</h2>
+                      <p>{user.surname}</p>
+                    </div>
+                  )}
+
                   <p>Bio: {profileData.bio}</p>
                   <p>Location: {profileData.location}</p>
                   <p>Joined: {profileData.joined}</p>

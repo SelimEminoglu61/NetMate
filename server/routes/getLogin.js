@@ -39,7 +39,11 @@ router.post("/getLogin", async (req, res) => {
       res.status(404).json({ success: false, message: "Not Found Account" });
     }
   } catch (err) {
-    res.status(500).json("Error", err);
+    console.error("Giriş hatası:", err.name, err.message);
+
+    res.status(500).json({
+      message: "Giriş işlemi sırasında sunucu hatası oluştu.",
+    });
   }
 });
 
