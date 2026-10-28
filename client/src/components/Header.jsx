@@ -1,6 +1,10 @@
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function Header() {
+  const navigate = useNavigate();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <div className="headerHome">
       <div className="headerHomeLeft">
@@ -10,9 +14,28 @@ function Header() {
       </div>
       <img src="/images/logo.png" alt="Logo" width={150} />
       <div className="headerHomeRight">
-        <NavLink className="profileButton" to="/profile">
+        <button
+          className="profileButton"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
           <img src="/images/user.png" alt="Profile" width={50} />
-        </NavLink>
+        </button>
+        {isMenuOpen && (
+          <div className="profileMenu">
+            <ul>
+              <li onClick={() => navigate("/profile")}>Profile</li>
+              <li onClick={() => navigate("/settings")}>Settings</li>
+              <li
+                onClick={() => {
+                  sessionStorage.removeItem("token");
+                  navigate("/login", { replace: true });
+                }}
+              >
+                Logout
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );

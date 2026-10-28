@@ -1,8 +1,9 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Header from "../components/Header";
 
 function Profile() {
+  const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -29,6 +30,12 @@ function Profile() {
           Authorization: `Bearer ${token}`,
         },
       });
+
+      if (response.status === 401) {
+        sessionStorage.removeItem("token");
+        navigate("/login", { replace: true });
+        return;
+      }
 
       if (response.ok) {
         const data = await response.json();
@@ -201,7 +208,7 @@ function Profile() {
                       <p>{user.surname}</p>
                     </div>
                   )}
-
+                  <p>Username: {profileData.username}</p>
                   <p>Bio: {profileData.bio}</p>
                   <p>Location: {profileData.location}</p>
                   <p>Joined: {profileData.joined}</p>

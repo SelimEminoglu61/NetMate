@@ -191,6 +191,7 @@
     padding: 5px 15px;
     border-bottom: 3px solid #ccc;
     position: sticky;
+    z-index: 100;
     button {
         background: none;
         :hover {
@@ -202,7 +203,37 @@
         border-radius: 10px;
         padding: 5px;
     }
-    .profileButton {
-        border: none;
+    .headerHomeRight {
+        position: relative;
+        .profileButton {
+            border: none;
+        }
+        .profileMenu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            ul {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                li {
+                    color: white;
+                    background: transparent;
+                    border: none;
+                    cursor: pointer;
+                    padding: 8px 16px;
+                    &:hover {
+                        background: rgba(255, 255, 255, 0.2);
+                    }
+                }
+            }
+        }
     }
 }
